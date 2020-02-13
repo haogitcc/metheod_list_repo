@@ -11,6 +11,8 @@ void PrintfArray(char* p_str, char* s_str, int* print_arr, int p_len, int s_len,
 
 int func(int m, int n);
 
+int x(int n);
+
 int main()
 {
     /*
@@ -21,11 +23,11 @@ int main()
     */
     char ParString[] = "abdbcca";
     char SonString[] = "abc";
-    
     //ConnectSequence(ParString, SonString);
 
     /*
     //Q2
+    请给出此题的非递归算法:
     f(m, n) = n, (m=1)
     f(m, n) = m, (n=1)
     f(m, n) = f(m-1, n) + f(m, n-1), (m>1, n>1)
@@ -36,10 +38,52 @@ int main()
     5, 16,41,91,182
     如上所示，假如想求m为3、n为4的f(m, n)值，就是25。
     */
-    cout << "Q2: " << func(3, 4) << endl;
+    //cout << "Q2: " << func(3, 4) << endl;
+
+    /*
+    //Q3
+    设计递归算法x(x(8))需要调用几次函数x(int n)。
+    */
+    int i;
+    i = x(x(8));
+    /*
+    x(8) --> 理解为一个二叉树
+         8
+       /   \
+      6     4
+     / \   / \
+    4   2 2  0
+   / \
+  2   0
+  节点数为9，
+  x(8)=9， 所以x(9) -->的二叉树
+         9
+       /   \
+      7     5
+     / \   / \
+    5   3 3  1
+   / \
+  3   1
+  节点数也为9，
+  所以x(x(8))一共调用了x(int n) 18次。
+    */
 
     return 0;
 }
+
+//start Q3
+int x(int n)
+{
+    if (n <= 3)
+    {
+        return 1;
+    }
+    else
+    {
+        return x(n - 2) + x(n - 4) + 1;
+    }
+}
+//Q3 end
 
 //start Q2
 #define RECUSION 0
